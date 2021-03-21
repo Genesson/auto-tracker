@@ -9,8 +9,10 @@
 </head>
 <body>
   <form class="popup-page">
-    <h1>AutoTracker</h1>
-    <p>Lista carregada: não</p>
+    <div class="logo">
+      <img src="logo.png" alt="AutoTracker" width="220">
+    </div>
+    <p>Lista carregada: <span id="status"></span></p>
     <ul>
       <li>
         <label for="email">E-mail *</label>
@@ -23,13 +25,18 @@
         <span>Informe sua senha de acesso ao clockify</span>
       </li>
       <li>
-        <label for="interval">Intervalo</label>
+        <label for="interval">Intervalo *</label>
         <div id="interval">
-          <input type="time" name="start_interval" id="start_interval">
+          <input type="time" name="start_interval" id="start_interval" value="12:00" required>
           <span>às</span>
-          <input type="time" name="end_interval" id="end_interval">
+          <input type="time" name="end_interval" id="end_interval" value="13:00" required>
         </div>
         <span>Informe sua senha de acesso ao clockify</span>
+      </li>
+      <li>
+        <label for="email">Prefixo *</label>
+        <input type="text" name="prefix" id="prefix" required>
+        <span>Padrão: Cliente | Escritório | Ambiente | Projeto</span>
       </li>
       <li>
         <label for="activity">Atividades</label>

@@ -69,60 +69,7 @@
 })(XMLHttpRequest);
 
 function insertData(list) {
-  const tasksString = 
-  `01/03/2021 Implementação do cupo de desconto
-  02/03/2021 Deploy em produção`;
-  
-  const tasksToArray = tasksString.split("\n");
-
-  const dataTask = [];
-  
-  tasksToArray.map(item => {
-    const task = {
-      date: item.trim().substring(0, item.trim().indexOf(" ")),
-      description: item.trim().substring(item.trim().indexOf(" ")).trim()
-    }
-    dataTask.push(task);
-  });
-
-  const DESCRIPTION_DEFAULT = "Santander | CWB | Front | AutoCompara";
-  const PROJECT_ID = "5ee7d2cf6e009831b01cecb7";
-  const hourIntervalStart = " 12:00:00";
-  const hourIntervalEnd = " 13:00:00";
-
-  json = [];
-
-  list = list.filter(item => item.marcacao1 != null);
-  list = list.slice(0, 3);
-
-  list.map(item => {
-    const descriptionTask = dataTask.filter(task => task.date === item.dt);
-    const description = descriptionTask[0] ? DESCRIPTION_DEFAULT + " | " + (descriptionTask[0].description) : DESCRIPTION_DEFAULT;
-
-    const data = {
-      billable: true,
-      description: description,
-      projectId: PROJECT_ID,
-      taskId: null,
-      tagIds: null
-    }
-
-    const firstPeriod = {
-      ...data,
-      start: new Date(new Date(item.marcacao1).setSeconds(0,0)).toISOString(),
-      end: new Date(item.data + hourIntervalStart).toISOString()
-    };
-
-    const secondPeriod = {
-      ...data,
-      start: new Date(item.data + hourIntervalEnd).toISOString(),
-      end: new Date(new Date(item.marcacao2).setSeconds(0,0)).toISOString()
-    };
-    
-    json.push(firstPeriod, secondPeriod);
-  });
-
-  const data = { type: "FROM_PAGE", list: json };
+  const data = { type: "FROM_PAGE", list };
   // envia para content
   window.postMessage(data, "*");
 }

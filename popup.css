@@ -4,6 +4,11 @@
   padding: 20px;
 }
 
+.popup-page .logo {
+	display: flex;
+	justify-content: center;
+}
+
 .popup-page ul {
   list-style: none;
 	padding: 0;
@@ -15,7 +20,7 @@
 	padding: 9px;
 	border: 1px solid #DDDDDD;
 	margin-bottom: 30px;
-	border-radius: 3px;
+	border-radius: 4px;
 }
 
 .popup-page li:last-child {
@@ -69,12 +74,18 @@
 .popup-page button[type="submit"],
 .popup-page button[type="button"] {
   cursor: pointer;
-	background: #2471FF;
+	background: #3DA9F4;
 	border: none;
 	padding: 10px 20px 10px 20px;
-	border-bottom: 3px solid #5994FF;
-	border-radius: 3px;
+	border-bottom: 5px solid #169af5;
+	border-radius: 4px;
 	color: #D2E2FF;
+	transition: all .2s ease-out
+}
+
+.popup-page button[type="button"]:focus {
+	border-bottom-color: #3DA9F4;
+	outline: 0;
 }
 
 .popup-page li > span {
