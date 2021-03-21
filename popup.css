@@ -1,0 +1,99 @@
+.popup-page {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 400px;
+  padding: 20px;
+}
+
+.popup-page ul {
+  list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.popup-page li {
+	display: block;
+	padding: 9px;
+	border: 1px solid #DDDDDD;
+	margin-bottom: 30px;
+	border-radius: 3px;
+}
+
+.popup-page li:last-child {
+	border: none;
+	margin-bottom: 0px;
+	text-align: center;
+}
+
+.popup-page li > label {
+	overflow: hidden;
+	display: block;
+	float: left;
+	margin-top: -19px;
+	height: 14px;
+	background: #FFFFFF;
+	padding: 2px 5px 2px 5px;
+  font-weight: bold;
+	font-size: 12px;
+	color: #333333;
+}
+
+.popup-page input[type="text"],
+.popup-page input[type="date"],
+.popup-page input[type="datetime"],
+.popup-page input[type="email"],
+.popup-page input[type="number"],
+.popup-page input[type="search"],
+.popup-page input[type="time"],
+.popup-page input[type="url"],
+.popup-page input[type="password"],
+.popup-page textarea,
+.popup-page select {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	width: 100%;
+	display: block;
+	outline: none;
+	border: none;
+	height: 25px;
+	line-height: 25px;
+	font-size: 16px;
+	color: #666666;
+	padding: 0;
+}
+
+.popup-page textarea {
+	resize: none;
+}
+
+.popup-page button[type="submit"],
+.popup-page button[type="button"] {
+  cursor: pointer;
+	background: #2471FF;
+	border: none;
+	padding: 10px 20px 10px 20px;
+	border-bottom: 3px solid #5994FF;
+	border-radius: 3px;
+	color: #D2E2FF;
+}
+
+.popup-page li > span {
+  display: block;
+	padding: 3px;
+	margin: 0 -9px -9px -9px;
+	background: #F3F3F3;
+	font-size: 11px;
+	color: #AAAAAA;
+	text-align: center;
+}
+
+.popup-page #interval {
+  display: grid;
+  grid-template-columns: 82px 28px 82px;
+}
+
+.popup-page #interval span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

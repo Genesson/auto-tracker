@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoTracker</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="popup.css">
+</head>
+<body>
+  <form class="popup-page">
+    <h1>AutoTracker</h1>
+    <p>Lista carregada: não</p>
+    <ul>
+      <li>
+        <label for="email">E-mail *</label>
+        <input type="email" name="email" id="email" required spellcheck="false">
+        <span>Informe seu e-mail de acesso ao clockify</span>
+      </li>
+      <li>
+        <label for="password">Senha *</label>
+        <input type="password" name="password" id="password" required>
+        <span>Informe sua senha de acesso ao clockify</span>
+      </li>
+      <li>
+        <label for="interval">Intervalo</label>
+        <div id="interval">
+          <input type="time" name="start_interval" id="start_interval">
+          <span>às</span>
+          <input type="time" name="end_interval" id="end_interval">
+        </div>
+        <span>Informe sua senha de acesso ao clockify</span>
+      </li>
+      <li>
+        <label for="activity">Atividades</label>
+        <textarea name="activity" id="activity"></textarea>
+        <span>Lista das atividades. Formato: 01/01/2021 Descrição da(s) atividade(s) [enter]</span>
+      </li>
+      <li>
+        <button type="button" id="btn">Salvar no Clockify</button>
+      </li>
+    </ul>
+  </form>
+  <script src="popup.js"></script>
+</body>
+</html>
