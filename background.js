@@ -16,10 +16,9 @@ chrome.extension.onConnect.addListener((port) => {
 
     if (list && typeof data === 'object') {
       console.log("Dados do formulário: ", data);
-      loginClockfy(list, data);
+      // loginClockfy(list, data);
     } else if(feedback.loadedList === false) {
       console.log(data);
-      return alert('Lista ainda não foi carregada!');
     }
   });
 });

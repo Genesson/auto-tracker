@@ -5,49 +5,65 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AutoTracker</title>
-  <link rel="stylesheet" type="text/css" media="screen" href="popup.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/popup.css">
 </head>
 <body>
   <form class="popup-page">
     <div class="logo">
-      <img src="logo.png" alt="AutoTracker" width="220">
+      <img src="images/logo.png" alt="AutoTracker" width="220">
     </div>
     <p>Lista carregada: <span id="status"></span></p>
-    <ul>
-      <li>
-        <label for="email">E-mail *</label>
-        <input type="email" name="email" id="email" required spellcheck="false">
-        <span>Informe seu e-mail de acesso ao clockify</span>
-      </li>
-      <li>
-        <label for="password">Senha *</label>
-        <input type="password" name="password" id="password" required>
-        <span>Informe sua senha de acesso ao clockify</span>
-      </li>
-      <li>
-        <label for="interval">Intervalo *</label>
-        <div id="interval">
-          <input type="time" name="start_interval" id="start_interval" value="12:00" required>
-          <span>às</span>
-          <input type="time" name="end_interval" id="end_interval" value="13:00" required>
+    <div class="form">
+      <div class="two-columns">
+        <div id="field-mail" class="item">
+          <label for="email">E-mail*</label>
+          <input type="email" name="email" id="email" required spellcheck="false">
+          <span id="info">E-mail de acesso ao clockify</span>
         </div>
-        <span>Informe sua senha de acesso ao clockify</span>
-      </li>
-      <li>
-        <label for="email">Prefixo *</label>
+        <div id="field-password" class="item">
+          <label for="password">Senha*</label>
+          <input type="password" name="password" id="password" required>
+          <span>Senha de acesso ao clockify</span>
+        </div>
+      </div>
+      <div class="two-columns">
+        <div id="field-period" class="item">
+          <label for="period">Período*</label>
+          <div class="period">
+            <input type="date" name="start_period" id="start_period" required>
+            <span>até</span>
+            <input type="date" name="end_period" id="end_period" required>
+          </div>
+          <span>Período para inserção</span>
+        </div>
+        <div id="field-interval" class="item">
+          <label for="interval">Intervalo* (almoço)</label>
+          <div class="interval">
+            <input type="time" name="start_interval" id="start_interval" value="12:00" required>
+            <span>às</span>
+            <input type="time" name="end_interval" id="end_interval" value="13:00" required>
+          </div>
+          <span>Intervalo intrajornada</span>
+        </div>
+      </div>
+      <div id="field-prefix" class="item">
+        <label for="email">Prefixo*</label>
         <input type="text" name="prefix" id="prefix" required>
         <span>Padrão: Cliente | Escritório | Ambiente | Projeto</span>
-      </li>
-      <li>
+      </div>
+      <div class="item">
         <label for="activity">Atividades</label>
         <textarea name="activity" id="activity"></textarea>
         <span>Lista das atividades. Formato: 01/01/2021 Descrição da(s) atividade(s) [enter]</span>
-      </li>
-      <li>
+      </div>
+      <div class="action">
         <button type="button" id="btn">Salvar no Clockify</button>
-      </li>
-    </ul>
+      </div>
+    </div>
+
+    <div id="messagesError"></div>
   </form>
-  <script src="popup.js"></script>
+
+  <script src="js/popup.js"></script>
 </body>
 </html>

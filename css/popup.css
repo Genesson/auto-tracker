@@ -1,6 +1,6 @@
 .popup-page {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  width: 400px;
+  width: 500px;
   padding: 20px;
 }
 
@@ -9,37 +9,43 @@
 	justify-content: center;
 }
 
-.popup-page ul {
-  list-style: none;
-	padding: 0;
-	margin: 0;
+.popup-page .two-columns {
+	display: grid;
+	grid-template-columns: 1fr 196px;
+	column-gap: 20px;
 }
 
-.popup-page li {
-	display: block;
+.popup-page .item {
 	padding: 9px;
 	border: 1px solid #DDDDDD;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	border-radius: 4px;
+	transition: 500ms;
 }
 
-.popup-page li:last-child {
+.popup-page .action {
 	border: none;
 	margin-bottom: 0px;
 	text-align: center;
 }
 
-.popup-page li > label {
-	overflow: hidden;
-	display: block;
+.popup-page .item > label {
 	float: left;
 	margin-top: -19px;
-	height: 14px;
 	background: #FFFFFF;
 	padding: 2px 5px 2px 5px;
-  font-weight: bold;
-	font-size: 12px;
+	font-weight: bold;
 	color: #333333;
+}
+
+.popup-page .item > span {
+  display: block;
+	padding: 3px;
+	margin: 0 -9px -9px -9px;
+	background: #F4F4F4;
+	font-size: 11px;
+	color: #AAAAAA;
+	text-align: center;
 }
 
 .popup-page input[type="text"],
@@ -53,22 +59,36 @@
 .popup-page input[type="password"],
 .popup-page textarea,
 .popup-page select {
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
 	width: 100%;
-	display: block;
-	outline: none;
-	border: none;
 	height: 25px;
-	line-height: 25px;
-	font-size: 16px;
+	font-size: 12px;
+	font-weight: bold;
 	color: #666666;
+	line-height: 14px;
 	padding: 0;
+	border: none;
+	outline: none;
 }
 
 .popup-page textarea {
 	resize: none;
+}
+
+.popup-page .interval {
+	display: grid;
+	grid-template-columns: 1fr 36px 1fr;
+}
+
+.popup-page .period {
+	display: grid;
+	grid-template-columns: 1fr 24px 1fr;
+}
+
+.popup-page .interval span, 
+.popup-page .period span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .popup-page button[type="submit"],
@@ -80,7 +100,6 @@
 	border-bottom: 5px solid #169af5;
 	border-radius: 4px;
 	color: #D2E2FF;
-	transition: all .2s ease-out
 }
 
 .popup-page button[type="button"]:focus {
@@ -88,23 +107,14 @@
 	outline: 0;
 }
 
-.popup-page li > span {
-  display: block;
-	padding: 3px;
-	margin: 0 -9px -9px -9px;
-	background: #F3F3F3;
-	font-size: 11px;
-	color: #AAAAAA;
+#messagesError {
+	width: 100%;
+	display: none;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: #33333380;
+	color: #FFFFFF;
+	border-radius: 10px 10px 0 0;
 	text-align: center;
-}
-
-.popup-page #interval {
-  display: grid;
-  grid-template-columns: 82px 28px 82px;
-}
-
-.popup-page #interval span {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
