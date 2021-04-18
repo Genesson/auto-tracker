@@ -4,7 +4,12 @@ let feedback = {
 }
 
 let portPopup;
+
 let list;
+
+let workspaceId;
+
+let listRecordsOnMonth;
 
 // lê de popup
 chrome.extension.onConnect.addListener((port) => {
@@ -15,8 +20,7 @@ chrome.extension.onConnect.addListener((port) => {
     console.log(list);
 
     if (list && typeof data === 'object') {
-      console.log("Dados do formulário: ", data);
-      // loginClockfy(list, data);
+      formatList(data);
     } else if(feedback.loadedList === false) {
       console.log(data);
     }
@@ -33,13 +37,11 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
   feedback.loadedList = true;
 });
 
-function loginClockfy(list, user) {
-  // TRATAMENTO DE LIST
+function formatList(user) {
   const tasksToArray = user.activity.split("\n");
-  console.log('tasksToArray', tasksToArray);
 
   const dataTask = [];
-  
+
   tasksToArray.map(item => {
     const task = {
       date: item.trim().substring(0, item.trim().indexOf(" ")),
@@ -84,9 +86,11 @@ function loginClockfy(list, user) {
     
     formattedList.push(firstPeriod, secondPeriod);
   });
-  // FECHA TRATAMENTO DE LIST
 
+  loginClockfy(formattedList, user);
+}
 
+function loginClockfy(formattedList, user) {
   const data = JSON.stringify({
     "email": user.email,
     "password": user.password
@@ -101,8 +105,13 @@ function loginClockfy(list, user) {
         alert('Falha no Login. Email ou Senha Inválidos!');
         return;
       }
-      const token = JSON.parse(this.responseText).token;
-      formattedList.map(item => insertRecordClockfy(token, item));
+
+      const login = {
+        loginId: JSON.parse(this.responseText).id,
+        memberShip: JSON.parse(this.responseText).membership[0].targetId,
+        token: JSON.parse(this.responseText).token
+      }
+      recordsOnMonth(login, formattedList);
     }
   });
   
@@ -112,9 +121,51 @@ function loginClockfy(list, user) {
   xhr.send(data);
 }
 
+function recordsOnMonth(login, formattedList) {
+  const data = null;
+
+  const xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === this.DONE) {
+      listRecordsOnMonth = JSON.parse(this.responseText).durationMap;
+
+      formattedList.map(item => insertRecordClockfy(login.token, item));
+    }
+  });
+
+  xhr.open("GET", `https://global.api.clockify.me/workspaces/${login.memberShip}/timeEntries/user/${login.loginId}/full?=&page=0&limit=50`);
+  xhr.setRequestHeader("X-Auth-Token", login.token);
+
+  xhr.send(data);
+}
+
+function findWorkspaceId(token, term) {
+  const data = null;
+
+  const xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === this.DONE) {
+      workspaceId = JSON.parse(this.responseText).durationMap;
+    }
+  });
+
+  xhr.open("GET", `https://global.api.clockify.me/workspaces/5cd5b8daf15c98690baa2da3/projects/list?=&name=${term}`);
+  xhr.setRequestHeader("X-Auth-Token", token);
+  xhr.setRequestHeader("Authorization", "Bearer ");
+
+  xhr.send(data);
+}
+
 function insertRecordClockfy(token, item) {
+  // Verifica se já existe registro neste dia no clockfy
+  if (listRecordsOnMonth[item.start.substring(0, 10)]) return;
+
   const data = JSON.stringify(item);
-  
+
   const xhr = new XMLHttpRequest();
   xhr.withCredentials = true;
   
