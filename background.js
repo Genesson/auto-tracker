@@ -114,7 +114,7 @@ function formatList(user, login) {
   formattedList = [];
 
   list = list.filter(item => item.marcacao1 != null);
-  list = list.slice(0, 3);
+  // list = list.slice(0, 3);
 
   list.map(item => {
     const descriptionTask = dataTask.filter(task => task.date === item.dt);
